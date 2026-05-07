@@ -16,12 +16,14 @@
 - **Structure patterns**: See code-generation.md Critical Rules
 
 ## Extension Configuration
-- **Security Baseline**: Pending opt-in
-- **Property-Based Testing**: Pending opt-in
+| Extension | Enabled | Decided At |
+|---|---|---|
+| Security Baseline | No | Requirements Analysis |
+| Property-Based Testing | No | Requirements Analysis |
 
 ## Stage Progress
 - [x] Workspace Detection (COMPLETED)
-- [ ] Requirements Analysis
+- [x] Requirements Analysis (COMPLETED)
 - [ ] User Stories (TBD)
 - [ ] Workflow Planning
 - [ ] Application Design (TBD)

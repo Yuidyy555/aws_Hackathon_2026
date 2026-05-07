@@ -1,163 +1,163 @@
-# Requirements Clarification Questions
+# 要件確認 質問票
 
-Please answer each question by filling in the letter choice after the `[Answer]:` tag.
-If none of the options match your needs, choose the last option (Other) and describe your preference.
-Let me know when you're done.
-
----
-
-## Question 1
-What type of application do you want to build?
-
-A) Web application (browser-based frontend + backend API)
-B) API / backend service only (no UI)
-C) CLI tool / command-line application
-D) Mobile application (iOS / Android)
-E) Data pipeline / batch processing system
-F) Other (please describe after [Answer]: tag below)
-
-[Answer]: 
+各質問の `[Answer]:` タグの後に、回答の選択肢（A、B、Cなど）を入力してください。
+どの選択肢も当てはまらない場合は、最後の「その他」を選んで `[Answer]:` の後に自由記述してください。
+すべて入力し終わったら「完了しました」と教えてください。
 
 ---
 
-## Question 2
-What is the primary purpose / problem this project solves?
-(Please provide a 1-3 sentence description below regardless of letter choice)
+## 質問 1
+どのようなアプリケーションを作りますか？
 
-A) Internal tool / productivity improvement for a team
-B) Customer-facing product or service
-C) Proof-of-concept / hackathon demo
-D) Infrastructure / platform component
-E) Other (please describe after [Answer]: tag below)
+A) Webアプリケーション（ブラウザで動くフロントエンド + バックエンドAPI）
+B) APIやバックエンドサービスのみ（UIなし）
+C) CLIツール（コマンドライン）
+D) モバイルアプリ（iOS / Android）
+E) データパイプライン / バッチ処理システム
+F) その他（[Answer]: の後に記述してください）
 
-[Answer]: 
-
----
-
-## Question 3
-Which cloud / infrastructure platform will this project target?
-
-A) AWS (Amazon Web Services)
-B) GCP (Google Cloud Platform)
-C) Azure (Microsoft Azure)
-D) On-premises / self-hosted
-E) No specific cloud — local development only
-F) Other (please describe after [Answer]: tag below)
-
-[Answer]: 
+[Answer]:エンジニアに答えてほしいので一旦保留
 
 ---
 
-## Question 4
-What is the primary programming language / technology stack preference?
+## 質問 2
+このプロジェクトの主な目的・解決する課題は何ですか？
+（選択肢に関わらず、1〜3文で説明を追記してもらえると助かります）
+
+A) 社内ツール / チームの生産性向上
+B) 顧客向けプロダクトやサービス
+C) PoC / ハッカソンのデモ
+D) インフラ / プラットフォームのコンポーネント
+E) その他（[Answer]: の後に記述してください）
+
+[Answer]:AとC
+
+---
+
+## 質問 3
+どのクラウド / インフラプラットフォームを使いますか？
+
+A) AWS（Amazon Web Services）
+B) GCP（Google Cloud Platform）
+C) Azure（Microsoft Azure）
+D) オンプレミス / セルフホスト
+E) 特になし — ローカル開発のみ
+F) その他（[Answer]: の後に記述してください）
+
+[Answer]:A
+
+---
+
+## 質問 4
+使いたいプログラミング言語 / 技術スタックはありますか？
 
 A) Python
-B) TypeScript / JavaScript (Node.js)
+B) TypeScript / JavaScript（Node.js）
 C) Java / Kotlin
 D) Go
 E) Ruby
-F) Other (please describe after [Answer]: tag below)
+F) その他（[Answer]: の後に記述してください）
 
-[Answer]: 
-
----
-
-## Question 5
-What is the expected scale and usage pattern?
-
-A) Small scale — single user or small team (< 10 users), low traffic
-B) Medium scale — internal department tool (10–100 users), moderate traffic
-C) Large scale — public-facing product (100+ users), high traffic
-D) Batch / scheduled — not real-time, runs on a schedule
-E) Other (please describe after [Answer]: tag below)
-
-[Answer]: 
+[Answer]:エンジニアに答えてほしいので一旦保留
 
 ---
 
-## Question 6
-What are the main features / capabilities you want in the MVP (minimum viable product)?
-(Please describe the key features in your answer regardless of letter choice)
+## 質問 5
+想定する規模・利用パターンはどれですか？
 
-A) I have a clear list of features (please describe below)
-B) I have a rough idea — help me define them
-C) Other (please describe after [Answer]: tag below)
+A) 小規模 — 個人または小チーム（10人未満）、トラフィック少
+B) 中規模 — 部門内ツール（10〜100人）、普通のトラフィック
+C) 大規模 — 一般公開（100人以上）、高トラフィック
+D) バッチ / スケジュール処理 — リアルタイムではなく定期実行
+E) その他（[Answer]: の後に記述してください）
 
-[Answer]: 
-
----
-
-## Question 7
-What data storage / persistence is required?
-
-A) Relational database (e.g., PostgreSQL, MySQL, Amazon RDS)
-B) NoSQL document store (e.g., DynamoDB, MongoDB)
-C) NoSQL key-value / cache (e.g., Redis, ElastiCache)
-D) Object storage (e.g., S3, GCS)
-E) No persistent storage needed
-F) Multiple / combination (please describe after [Answer]: tag below)
-
-[Answer]: 
+[Answer]:A
 
 ---
 
-## Question 8
-Is user authentication / authorization required?
+## 質問 6
+MVPに含めたい主な機能・できることは何ですか？
+（選択肢に関わらず、具体的に書いてもらえると助かります）
 
-A) Yes — username/password (email + password)
-B) Yes — OAuth / social login (Google, GitHub, etc.)
-C) Yes — SSO / SAML (enterprise)
-D) Yes — API key based (for service-to-service)
-E) No — no authentication needed
-F) Other (please describe after [Answer]: tag below)
+A) 機能リストが明確にある（[Answer]: の後に記述してください）
+B) ざっくりしたイメージはある — 一緒に整理したい
+C) その他（[Answer]: の後に記述してください）
 
-[Answer]: 
-
----
-
-## Question 9
-What is the project timeline and delivery expectation?
-
-A) Hackathon / demo — need working MVP within days
-B) Sprint — need working MVP within 1–2 weeks
-C) Short project — need working MVP within 1 month
-D) No fixed deadline — quality over speed
-E) Other (please describe after [Answer]: tag below)
-
-[Answer]: 
+[Answer]:A 気持ちをそのままテキストで入力したら→会社の求めるコンピテンシーに沿った内容に変換出力される
+- 本人も余り気づかないように成長支援もする。
 
 ---
 
-## Question 10
-Who are the primary users of this application?
+## 質問 7
+データの保存・永続化は必要ですか？
 
-A) Developers / engineers (technical users)
-B) Business users / non-technical staff
-C) End consumers / general public
-D) Automated systems / other services (machine-to-machine)
-E) Other (please describe after [Answer]: tag below)
+A) リレーショナルDB（例: PostgreSQL、MySQL、Amazon RDS）
+B) NoSQLドキュメントストア（例: DynamoDB、MongoDB）
+C) NoSQLキーバリュー / キャッシュ（例: Redis、ElastiCache）
+D) オブジェクトストレージ（例: S3）
+E) 永続化不要
+F) 複数 / 組み合わせ（[Answer]: の後に記述してください）
 
-[Answer]: 
+[Answer]:エンジニアに答えてほしいので一旦保留
+---
+
+## 質問 8
+ユーザー認証・認可は必要ですか？
+
+A) あり — メール + パスワード
+B) あり — OAuth / ソーシャルログイン（Google、GitHubなど）
+C) あり — SSO / SAML（エンタープライズ）
+D) あり — APIキー方式（サービス間通信）
+E) なし — 認証不要
+F) その他（[Answer]: の後に記述してください）
+
+[Answer]: エンジニアに答えてほしいので一旦保留
 
 ---
 
-## Question: Security Extensions
-Should security extension rules be enforced for this project?
+## 質問 9
+プロジェクトのスケジュール・納期はどれですか？
 
-A) Yes — enforce all SECURITY rules as blocking constraints (recommended for production-grade applications)
-B) No — skip all SECURITY rules (suitable for PoCs, prototypes, and experimental projects)
-X) Other (please describe after [Answer]: tag below)
+A) ハッカソン / デモ — 数日以内に動くMVPが必要
+B) スプリント — 1〜2週間以内にMVPが必要
+C) 短期プロジェクト — 1ヶ月以内にMVPが必要
+D) 期限なし — 品質重視でじっくり
+E) その他（[Answer]: の後に記述してください）
 
-[Answer]: 
+[Answer]: A
 
 ---
 
-## Question: Property-Based Testing Extension
-Should property-based testing (PBT) rules be enforced for this project?
+## 質問 10
+このアプリの主なユーザーは誰ですか？
 
-A) Yes — enforce all PBT rules as blocking constraints (recommended for projects with business logic, data transformations, serialization, or stateful components)
-B) Partial — enforce PBT rules only for pure functions and serialization round-trips (suitable for projects with limited algorithmic complexity)
-C) No — skip all PBT rules (suitable for simple CRUD applications, UI-only projects, or thin integration layers with no significant business logic)
-X) Other (please describe after [Answer]: tag below)
+A) 開発者 / エンジニア（技術者）
+B) ビジネスユーザー / 非技術系スタッフ
+C) 一般消費者 / 一般ユーザー
+D) 自動化システム / 他のサービス（マシン間通信）
+E) その他（[Answer]: の後に記述してください）
 
-[Answer]: 
+[Answer]: AとB
+
+---
+
+## 拡張機能: セキュリティ
+このプロジェクトにセキュリティルールを適用しますか？
+
+A) はい — セキュリティルールをすべて強制する（本番グレードのアプリに推奨）
+B) いいえ — セキュリティルールをスキップ（PoC / プロトタイプに適切）
+X) その他（[Answer]: の後に記述してください）
+
+[Answer]: B
+
+---
+
+## 拡張機能: プロパティベーステスト
+プロパティベーステスト（PBT）のルールを適用しますか？
+
+A) はい — PBTルールをすべて強制する（ビジネスロジックやデータ変換が複雑なプロジェクトに推奨）
+B) 部分的 — 純粋関数とシリアライズのみPBTを適用
+C) いいえ — PBTルールをスキップ（シンプルなCRUDやUIのみのプロジェクトに適切）
+X) その他（[Answer]: の後に記述してください）
+
+[Answer]:C
