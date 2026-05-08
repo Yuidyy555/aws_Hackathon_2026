@@ -1,51 +1,51 @@
-# Execution Plan
+# 実行計画
 
-## Detailed Analysis Summary
+## 詳細分析サマリー
 
-### Request Summary
-- **Primary Goal**: Slack連携 + Web履歴参照を備えた、感情/意図を自然なビジネス文へ変換するMVPを構築する
-- **Project Type**: Greenfield
-- **Complexity**: Medium（LLM連携、認証、履歴保存、複数チャネル）
+### リクエスト要約
+- **主目的**: Slack連携 + Web履歴参照を備えた、感情/意図を自然なビジネス文へ変換するMVPを構築する
+- **プロジェクト種別**: グリーンフィールド
+- **複雑度**: 中程度（LLM連携、認証、履歴保存、複数チャネル）
 
-### Change Impact Assessment
-- **User-facing changes**: Yes（主要機能のすべてがユーザー体験に直結）
-- **Structural changes**: Yes（Slackアプリ + Web + API + 認証 + DB）
-- **Data model changes**: Yes（ユーザー、履歴、コンテキスト、生成結果）
-- **API changes**: Yes（Web/API/Slack入口の統一）
-- **NFR impact**: Yes（応答時間、プライバシー、可用性）
+### 変更影響評価
+- **ユーザー影響**: あり（主要機能のすべてがユーザー体験に直結）
+- **構造変更**: あり（Slackアプリ + Web + API + 認証 + DB）
+- **データモデル変更**: あり（ユーザー、履歴、コンテキスト、生成結果）
+- **API変更**: あり（Web/API/Slack入口の統一）
+- **NFR影響**: あり（応答時間、プライバシー、可用性）
 
-### Risk Assessment
-- **Risk Level**: Medium
-- **Rollback Complexity**: Moderate（MVPだが複数機能が連動）
-- **Testing Complexity**: Moderate（生成品質 + API + 認証の結合検証が必要）
+### リスク評価
+- **リスクレベル**: 中
+- **ロールバック難易度**: 中（MVPだが複数機能が連動）
+- **テスト難易度**: 中（生成品質 + API + 認証の結合検証が必要）
 
-## Workflow Visualization
+## ワークフロー可視化
 
 ```mermaid
 flowchart TD
-    Start(["User Request"])
+    Start(["ユーザー要求"])
 
-    subgraph INCEPTION["🔵 INCEPTION PHASE"]
-        WD["Workspace Detection<br/><b>COMPLETED</b>"]
-        RE["Reverse Engineering<br/><b>SKIP</b>"]
-        RA["Requirements Analysis<br/><b>COMPLETED</b>"]
-        US["User Stories<br/><b>COMPLETED</b>"]
-        WP["Workflow Planning<br/><b>EXECUTE</b>"]
-        AD["Application Design<br/><b>EXECUTE</b>"]
-        UG["Units Generation<br/><b>EXECUTE</b>"]
+    subgraph INCEPTION["🔵 インセプションフェーズ"]
+        WD["ワークスペース検出<br/><b>完了</b>"]
+        RE["リバースエンジニアリング<br/><b>スキップ</b>"]
+        RA["要件分析<br/><b>完了</b>"]
+        US["ユーザーストーリー<br/><b>完了</b>"]
+        WP["ワークフロー計画<br/><b>実行</b>"]
+        AD["アプリケーション設計<br/><b>実行</b>"]
+        UG["ユニット生成<br/><b>実行</b>"]
     end
 
-    subgraph CONSTRUCTION["🟢 CONSTRUCTION PHASE"]
-        FD["Functional Design<br/><b>EXECUTE</b>"]
-        NFRA["NFR Requirements<br/><b>EXECUTE</b>"]
-        NFRD["NFR Design<br/><b>EXECUTE</b>"]
-        ID["Infrastructure Design<br/><b>EXECUTE</b>"]
-        CG["Code Generation<br/><b>EXECUTE</b>"]
-        BT["Build and Test<br/><b>EXECUTE</b>"]
+    subgraph CONSTRUCTION["🟢 コンストラクションフェーズ"]
+        FD["機能設計<br/><b>実行</b>"]
+        NFRA["NFR要件定義<br/><b>実行</b>"]
+        NFRD["NFR設計<br/><b>実行</b>"]
+        ID["インフラ設計<br/><b>実行</b>"]
+        CG["コード生成<br/><b>実行</b>"]
+        BT["ビルドとテスト<br/><b>実行</b>"]
     end
 
-    subgraph OPERATIONS["🟡 OPERATIONS PHASE"]
-        OPS["Operations<br/><b>PLACEHOLDER</b>"]
+    subgraph OPERATIONS["🟡 オペレーションフェーズ"]
+        OPS["オペレーション<br/><b>プレースホルダー</b>"]
     end
 
     Start --> WD
@@ -60,7 +60,7 @@ flowchart TD
     NFRD --> ID
     ID --> CG
     CG --> BT
-    BT --> End(["Complete"])
+    BT --> End(["完了"])
     BT -.-> OPS
 
     style WD fill:#4CAF50,stroke:#1B5E20,stroke-width:3px,color:#fff
@@ -85,51 +85,51 @@ flowchart TD
     linkStyle default stroke:#333,stroke-width:2px
 ```
 
-### Text Alternative
-- INCEPTION: Workspace Detection (COMPLETED) -> Requirements Analysis (COMPLETED) -> User Stories (COMPLETED) -> Workflow Planning (EXECUTE) -> Application Design (EXECUTE) -> Units Generation (EXECUTE)
-- CONSTRUCTION: Functional Design (EXECUTE) -> NFR Requirements (EXECUTE) -> NFR Design (EXECUTE) -> Infrastructure Design (EXECUTE) -> Code Generation (EXECUTE) -> Build and Test (EXECUTE)
-- OPERATIONS: Placeholder
+### テキスト代替表現
+- インセプション: ワークスペース検出（完了） -> 要件分析（完了） -> ユーザーストーリー（完了） -> ワークフロー計画（実行） -> アプリケーション設計（実行） -> ユニット生成（実行）
+- コンストラクション: 機能設計（実行） -> NFR要件定義（実行） -> NFR設計（実行） -> インフラ設計（実行） -> コード生成（実行） -> ビルドとテスト（実行）
+- オペレーション: プレースホルダー
 
-## Phases to Execute
+## 実行フェーズ
 
-### 🔵 INCEPTION PHASE
-- [x] Workspace Detection (COMPLETED)
-- [x] Reverse Engineering (SKIPPED - Greenfieldのため)
-- [x] Requirements Analysis (COMPLETED)
-- [x] User Stories (COMPLETED)
-- [x] Workflow Planning (IN PROGRESS)
-- [ ] Application Design - EXECUTE
-  - **Rationale**: Slack/Web/API/認証/DB間の責務分離とサービス境界を定義する必要がある
-- [ ] Units Generation - EXECUTE
-  - **Rationale**: 複数機能を独立した実装単位に分解する必要がある
+### 🔵 インセプションフェーズ
+- [x] ワークスペース検出（完了）
+- [x] リバースエンジニアリング（スキップ - グリーンフィールドのため）
+- [x] 要件分析（完了）
+- [x] ユーザーストーリー（完了）
+- [x] ワークフロー計画（進行中）
+- [ ] アプリケーション設計 - 実行
+  - **理由**: Slack/Web/API/認証/DB間の責務分離とサービス境界を定義する必要がある
+- [ ] ユニット生成 - 実行
+  - **理由**: 複数機能を独立した実装単位に分解する必要がある
 
-### 🟢 CONSTRUCTION PHASE
-- [ ] Functional Design - EXECUTE
-  - **Rationale**: 変換ロジック、履歴処理、エラー系を詳細化する必要がある
-- [ ] NFR Requirements - EXECUTE
-  - **Rationale**: 応答時間、プライバシー、品質を測定可能な要件へ落とす必要がある
-- [ ] NFR Design - EXECUTE
-  - **Rationale**: NFR達成のための設計パターンを定義する必要がある
-- [ ] Infrastructure Design - EXECUTE
-  - **Rationale**: AWSサービス構成（Bedrock/RDS/Cognito等）を具体化する必要がある
-- [ ] Code Generation - EXECUTE (ALWAYS)
-  - **Rationale**: 実装計画とコード生成が必要
-- [ ] Build and Test - EXECUTE (ALWAYS)
-  - **Rationale**: MVP品質確認とデモ安定性確保が必要
+### 🟢 コンストラクションフェーズ
+- [ ] 機能設計 - 実行
+  - **理由**: 変換ロジック、履歴処理、エラー系を詳細化する必要がある
+- [ ] NFR要件定義 - 実行
+  - **理由**: 応答時間、プライバシー、品質を測定可能な要件へ落とす必要がある
+- [ ] NFR設計 - 実行
+  - **理由**: NFR達成のための設計パターンを定義する必要がある
+- [ ] インフラ設計 - 実行
+  - **理由**: AWSサービス構成（Bedrock/RDS/Cognito等）を具体化する必要がある
+- [ ] コード生成 - 実行（常時）
+  - **理由**: 実装計画とコード生成が必要
+- [ ] ビルドとテスト - 実行（常時）
+  - **理由**: MVP品質確認とデモ安定性確保が必要
 
-### 🟡 OPERATIONS PHASE
-- [ ] Operations - PLACEHOLDER
-  - **Rationale**: 将来拡張フェーズ
+### 🟡 オペレーションフェーズ
+- [ ] オペレーション - プレースホルダー
+  - **理由**: 将来拡張フェーズ
 
-## Estimated Timeline
-- **Total Stages (remaining, excluding placeholder)**: 8
-- **Estimated Duration**: ハッカソン向け短期（1〜3日相当の密度で実施可能）
+## 想定スケジュール
+- **残ステージ数（プレースホルダー除く）**: 8
+- **想定期間**: ハッカソン向け短期（1〜3日相当の密度で実施可能）
 
-## Success Criteria
+## 成功基準
 - 自然で意図を汲み取ったビジネス文章が安定して生成される
 - Slack連携とWeb履歴参照が同一品質で成立する
 - OAuth認証下で履歴がユーザー単位に保護される
 
-## Extension Compliance Summary
+## 拡張ルール適合サマリー
 - **Security Baseline**: N/A（`aidlc-state.md`で無効設定）
 - **Property-Based Testing**: N/A（`aidlc-state.md`で無効設定）

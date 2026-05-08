@@ -176,3 +176,91 @@ Q8: 認証の箇所
 **Context**: INCEPTION PHASE — Workflow Planning (Step 9 gate)
 
 ---
+
+## Workflow Planning - Language Change Request
+**Timestamp**: 2026-05-08T07:01:00Z
+**User Input**: "Request Changes 日本語に書いてください。"
+**AI Response**: Updated `aidlc-docs/inception/plans/execution-plan.md` to Japanese wording (headings, labels, phase descriptions, and rationale text) while preserving planning decisions and structure.
+**Context**: INCEPTION PHASE — Workflow Planning (review change request reflected)
+
+---
+
+## Workflow Planning - Approved
+**Timestamp**: 2026-05-08T07:03:00Z
+**User Input**: "承認します"
+**AI Response**: Recorded approval and transitioned to Application Design stage.
+**Context**: INCEPTION PHASE — Workflow Planning (approved)
+
+---
+
+## Application Design - Plan Created
+**Timestamp**: 2026-05-08T07:03:00Z
+**User Input**: "承認します"
+**AI Response**: Created `aidlc-docs/inception/plans/application-design-plan.md` with execution checklist, mandatory artifacts, and 7 context-specific design questions using [Answer] tags. Waiting for user answers before artifact generation.
+**Context**: INCEPTION PHASE — Application Design (planning started, question gate active)
+
+---
+
+## Application Design - Clarification Question
+**Timestamp**: 2026-05-08T07:08:00Z
+**User Input**: "一覧には日付とやりとりがあるイメージですが、詳細との差分はなんですか？"
+**AI Response**: Explained the boundary between history list and history detail views, including recommended data fields and interaction differences for MVP scope decisions.
+**Context**: INCEPTION PHASE — Application Design (question clarification during planning)
+
+---
+
+## Application Design - Answers Received
+**Timestamp**: 2026-05-08T07:10:00Z
+**User Input**: "完了しました"
+**AI Response**: Read `application-design-plan.md`, validated all answers were complete, and found no blocking ambiguities.
+**Context**: INCEPTION PHASE — Application Design (planning Q&A completed)
+
+---
+
+## Application Design - Artifacts Generated
+**Timestamp**: 2026-05-08T07:10:00Z
+**User Input**: "完了しました"
+**AI Response**: Generated application design artifacts: `components.md`, `component-methods.md`, `services.md`, `component-dependency.md`, and consolidated `application-design.md`. Updated application design plan checkboxes and state to in-review.
+**Context**: INCEPTION PHASE — Application Design (artifact generation complete)
+
+---
+
+## Application Design - Approval Prompt
+**Timestamp**: 2026-05-08T07:10:00Z
+**User Input**: "完了しました"
+**AI Response**: Prompting user for review and explicit approval of application design artifacts before proceeding to Units Generation.
+**Context**: INCEPTION PHASE — Application Design (approval gate)
+
+---
+
+## Application Design - Change Request (Slack/API boundary)
+**Timestamp**: 2026-05-08T07:16:00Z
+**User Input**: "SlackとAPIを分ける必要はある？それであればSlackだけにして将来的に別コンポーネント作るでもいい気がする。"
+**AI Response**: Accepted the change request and updated application design artifacts to make public API future-scope (not in MVP), while keeping Slack/Web gateways and shared transform service as current scope.
+**Context**: INCEPTION PHASE — Application Design (review change reflected)
+
+---
+
+## Application Design - Change Request (Endpoint/Method Naming)
+**Timestamp**: 2026-05-08T07:17:00Z
+**User Input**: "公開インターフェースのエンドポイント名がいけていないので、わかりやく、メンテナンスしやすい名前に修正して。例で言うとtransformは何をtransformしているかわからないです。機能と名前を揃えてください。"
+**AI Response**: Renamed endpoints and method signatures from generic `transform` naming to explicit `reply-draft` naming and synchronized related component/service/dependency documents for consistency.
+**Context**: INCEPTION PHASE — Application Design (review change reflected)
+
+---
+
+## Application Design - Change Request (reply vs draft naming)
+**Timestamp**: 2026-05-08T07:20:00Z
+**User Input**: "送信されたものはもうdraftではないので、名前をreplyにしてください。送信するかどうかユーザーが判断する文章を返す場合はdraftのままで良いです。"
+**AI Response**: Updated naming convention across application design artifacts: draft generation uses `reply-draft`, while sent outcomes/history use `reply`. Added explicit send-reply endpoints and corresponding method/service/dependency naming.
+**Context**: INCEPTION PHASE — Application Design (review change reflected)
+
+---
+
+## Application Design - Clarification (reply target input)
+**Timestamp**: 2026-05-08T07:24:00Z
+**User Input**: "返信するには自分の感情の文章だけではなく、返信対象の文章も送る必要があります。そこの入力は考慮されていますか？例: generateReplyDraftFromSlashCommand(payload: SlackCommandPayload, headers: HeaderMap)"
+**AI Response**: Updated application design artifacts to explicitly require both `replyTargetMessageText` and `emotionText` for reply draft generation, including method signatures, component responsibilities, and service flow descriptions.
+**Context**: INCEPTION PHASE — Application Design (review clarification reflected)
+
+---
