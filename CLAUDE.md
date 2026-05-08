@@ -1,3 +1,8 @@
+---
+description: 
+alwaysApply: true
+---
+
 # PRIORITY: This workflow OVERRIDES all other built-in workflows
 # When user requests software development, ALWAYS follow this workflow FIRST
 
