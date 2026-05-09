@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>要件定義書 — サクラクダ（仮）</title>
+  <meta name="description" content="要件定義書（requirements.md の静的ビュー）">
+  <style>
+:root {
+  /* 背景：ピクダの脚や背景にある「淡いミストブルー/ラベンダー」 */
+  --bg: #f3f4f9; 
+  
+  /* 表面：清潔感のある白、またはごくわずかにピンクを混ぜた白 */
+  --surface: #ffffff;
+  
+  /* テキスト：ドットの縁取りに使われている「深いパープルブラック」 */
+  --text: #2a2430;
+  
+  /* 補足テキスト：脚の影色に近い「落ち着いたブルーグレー」 */
+  --muted: #6b7294;
+  
+  /* アクセント：サクラのメインカラー「鮮やかなサクラピンク」 */
+  --accent: #c44d8b;
+  
+  /* アクセント（ソフト）：ボタンのホバーなどに使う淡いピンク */
+  --accent-soft: rgba(196, 77, 139, 0.1);
+  
+  /* ボーダー：画面をうるさくしない「淡いラベンダーグレー」 */
+  --border: #dcdde8;
+  
+  /* 角丸：少し丸みを持たせて「癒やし」を演出（ドット感を出すなら4px、優しさなら12px） */
+  --radius: 12px;
+  
+  /* シャドウ：少しだけ「夜」の深みを感じる影 */
+  --shadow: 0 2px 8px rgba(42, 36, 48, 0.08);
+  
+  --maxw: 52rem;
+}
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      padding: 2rem 1.25rem 4rem;
+      font-family: "Hiragino Sans", "Hiragino Kaku Gothic ProN", "Noto Sans JP", sans-serif;
+      font-size: 15px;
+      line-height: 1.75;
+      color: var(--text);
+      background: linear-gradient(180deg, #fff5f7 0%, var(--bg) 320px);
+    }
+
+    .wrap {
+      max-width: var(--maxw);
+      margin: 0 auto;
+    }
+
+    header.doc-head {
+      margin-bottom: 2rem;
+      padding: 1.75rem 1.5rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    header.doc-head h1 {
+      margin: 0 0 0.5rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.02em;
+    }
+
+    header.doc-head .meta {
+      margin: 0;
+      font-size: 0.875rem;
+      color: var(--muted);
+    }
+
+    header.doc-head .hint {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px dashed var(--border);
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    section {
+      margin-bottom: 2rem;
+      padding: 1.5rem 1.5rem 1.25rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+    }
+
+    section > h2:first-child {
+      margin-top: 0;
+      padding-bottom: 0.75rem;
+      margin-bottom: 1rem;
+      font-size: 1.125rem;
+      font-weight: 700;
+      color: var(--accent);
+      border-bottom: 2px solid var(--accent-soft);
+    }
+
+    h3 {
+      margin: 1.5rem 0 0.75rem;
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    h3:first-of-type {
+      margin-top: 0;
+    }
+
+    p {
+      margin: 0 0 1rem;
+    }
+
+    p:last-child {
+      margin-bottom: 0;
+    }
+
+    strong {
+      font-weight: 700;
+    }
+
+    ul, ol {
+      margin: 0 0 1rem;
+      padding-left: 1.35rem;
+    }
+
+    li {
+      margin-bottom: 0.35rem;
+    }
+
+    li ul {
+      margin-top: 0.35rem;
+      margin-bottom: 0.5rem;
+    }
+
+    hr.section-rule {
+      display: none;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.9375rem;
+      margin: 0 0 1rem;
+    }
+
+    th, td {
+      border: 1px solid var(--border);
+      padding: 0.6rem 0.75rem;
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--accent-soft);
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    tbody tr:nth-child(even) {
+      background: #fafaf9;
+    }
+
+    .tagline {
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      margin-bottom: 1rem;
+    }
+
+    /* FRごとのカード（機能要件） */
+    #functional .req-card {
+      margin-bottom: 1rem;
+      padding: 1rem 1.15rem 1.05rem;
+      background: #fffefb;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      border-left: 4px solid var(--accent);
+      box-shadow: 0 1px 2px rgba(28, 25, 23, 0.05);
+    }
+
+    #functional .req-card:last-of-type {
+      margin-bottom: 0;
+    }
+
+    #functional .req-card h3 {
+      margin-top: 0 !important;
+      margin-bottom: 0.65rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 1px solid var(--accent-soft);
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--text);
+    }
+
+    #functional .req-card ul:last-child {
+      margin-bottom: 0;
+    }
+
+    /* FR-01: 説明 / 例 の2カラム */
+    #functional .req-two-col {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem 1.35rem;
+      align-items: start;
+      margin-top: 0.35rem;
+    }
+
+    #functional .req-two-col__label {
+      margin: 0 0 0.45rem;
+      font-size: 0.72rem;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    #functional .req-two-col__list {
+      margin: 0;
+      padding-left: 1.25rem;
+    }
+
+    #functional .req-two-col__list li {
+      margin-bottom: 0.45rem;
+    }
+
+    #functional .req-example-box {
+      margin: 0;
+      padding: 0.85rem 1rem;
+      background: #fafaf9;
+      border: 1px dashed var(--border);
+      border-radius: 8px;
+      font-size: 0.9375rem;
+      line-height: 1.65;
+    }
+
+    #functional .req-example-box__k {
+      display: inline-block;
+      margin-bottom: 0.2rem;
+      font-size: 0.75rem;
+      font-weight: 600;
+      color: var(--muted);
+    }
+
+    #functional .req-example-box__row {
+      margin: 0 0 0.85rem;
+    }
+
+    #functional .req-example-box__row:last-of-type {
+      margin-bottom: 0;
+    }
+
+    #functional .req-example-box__note {
+      margin: 0.75rem 0 0;
+      padding-top: 0.65rem;
+      border-top: 1px solid var(--border);
+      font-size: 0.8125rem;
+      color: var(--muted);
+    }
+
+    @media (max-width: 720px) {
+      #functional .req-two-col {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media print {
+      body {
+        background: #fff;
+        padding: 0;
+      }
+      section {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+      #functional .req-card {
+        box-shadow: none;
+        page-break-inside: avoid;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header class="doc-head">
+      <h1>要件定義書</h1>
+      <p class="meta">サクラクダ（仮） — ハッカソン提出・レビュー用スタティックHTML</p>
+      <p class="hint">ソースは同フォルダの <code>requirements.md</code> です。HTML版では運用向けの「ハッカソン適合要件」「提出計画」「審査基準トレーサビリティ」は含めていません（Markdown側を参照）。その他は更新時にHTMLも合わせてください。</p>
+    </header>
+
+    <section id="intent">
+      <h2>インテント分析サマリー</h2>
+      <table>
+        <thead>
+          <tr><th>項目</th><th>内容</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>リクエスト種別</td><td>新規プロジェクト（グリーンフィールド）</td></tr>
+          <tr><td>スコープ</td><td>システム全体（新規構築）</td></tr>
+          <tr><td>複雑度</td><td>中程度（AI統合 + テキスト変換ロジック）</td></tr>
+          <tr><td>納期</td><td>ハッカソン（数日以内にMVPが必要）</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="vision">
+      <h2>プロダクトビジョン</h2>
+      <p><strong>プロダクト名（仮）</strong>: 「サクラクダ」（仮称）</p>
+      <p class="tagline"><strong>コアコンセプト</strong>: 「さくっと、らくらく。気持ちほぐれて、花開く」</p>
+      <p>ユーザーは、応答の踏み台となるチャット内容（相手からの一文・状況の要約など）と、それに対する<strong>自分の感情だけ</strong>を短く入力します。<br>
+      AIはその文脈と感情から、会社・社会が求めるコンピテンシーに沿った返信・言い回しを生成します。<br>
+      その「感情を抑えてコンピテンシーに沿う言葉に直す」作業がうまくなる必要は、もうありません。</p>
+
+      <p><strong>このプロダクトが「何をダメにするか」</strong>:</p>
+      <p>社会人としてやり続けてきた「感情の翻訳作業」を、わたしたちが引き受けます。<br>
+      ユーザーは、無理に環境や組織に求められるものに、合わせる必要がありません。<br>
+      このプロダクトを使うと、あなたはあなたのままで良いと認められながら、環境とも融合できる心の安定を手に入れられます。<br>
+      その結果、このプロダクトなしではアウトプットをするのが不安になる＝ダメになってしまいます。恐ろしいプロダクトです。</p>
+
+      <p><strong>「人をダメにする」構造:</strong></p>
+      <ul>
+        <li>対象タスク:
+          <ul>
+            <li>従来ユーザー本人が担っていた「感情を抑えて、社会や会社の中で評価される言葉へ変換する作業」を代替対象とします。</li>
+          </ul>
+        </li>
+        <li>介入ポイント:
+          <ul>
+            <li>入力: 文脈テキスト + 感情ラベル</li>
+            <li>処理: コンピテンシー定義と自己コンテキストを反映した言語変換</li>
+            <li>出力: 送信可能な返信文（コピー/編集可能）</li>
+          </ul>
+        </li>
+        <li>本プロダクトにおける「ダメ」の定義:
+          <ul>
+            <li>ユーザーが消耗的な翻訳作業スキルを維持・向上させなくても、業務上必要なアウトプットを安定して出せる状態です。</li>
+            <li>これは能力低下を目的とするものではなく、低付加価値な消耗作業からの解放を意味します。</li>
+          </ul>
+        </li>
+        <li>境界条件（安全性・倫理）:
+          <ul>
+            <li>意思決定そのものは代替しません（最終判断はユーザー）。</li>
+            <li>虚偽、公序良俗に反する出力は許容しません。</li>
+            <li>対人攻撃を直接助長する文面は生成しませんが、怒り・苛立ち・拒否感などの感情は否定せずに受け止めます。</li>
+            <li>「その感情は間違い」と断定せず、感情の存在を認めたうえで、安全かつ伝わる表現へ変換します。</li>
+          </ul>
+        </li>
+        <li>期待効果（評価可能な指標）:
+          <ul>
+            <li>返信文作成時間の短縮</li>
+            <li>「自分の言葉として送れる」自己評価の向上</li>
+            <li>継続利用率（依存体験）の向上</li>
+          </ul>
+        </li>
+      </ul>
+
+      <p><strong>解決する課題</strong>:</p>
+      <ul>
+        <li>フルリモート環境では、日常の対話から得られる偶発的なフィードバックが減り、「伝え方の補正機会」が不足しています。</li>
+        <li>多くのビジネスパーソンは、感情をそのまま出せず、会社・組織の評価基準に合わせた言語変換を都度手作業で行っており、認知的負荷が高いです。</li>
+        <li>その結果、「考える力」や業務の本質とは別に、表現変換スキルの差で評価が左右されやすく、心理的消耗と生産性低下が生じています。</li>
+      </ul>
+    </section>
+
+    <section id="functional">
+      <h2>機能要件</h2>
+
+      <article class="req-card req-card--split">
+        <h3>FR-01: 文脈テキストと感情入力</h3>
+        <div class="req-two-col">
+          <div class="req-two-col__cell">
+            <p class="req-two-col__label">説明</p>
+            <ul class="req-two-col__list">
+              <li>ユーザーは、返信や言い換えの<strong>対象となるチャット内容</strong>を入力します（相手からのメッセージや、状況の一文など）。</li>
+              <li>その文脈に対して、ユーザーが抱いている<strong>感情のみ</strong>をテキストで入力します。長文の愚痴・箇条書きのメモ・自由な心情散文は想定しません。短い感情ラベルや一言に寄せます。</li>
+              <li>感情は短いラベルで入力します（いわゆる感情ラベリング／アフェクト・ラベリングに近い入力設計です）。長文にしないことで、認知負荷を抑えつつ気持ちを言語化する助けにします。</li>
+              <li>長文の「思いの丈」欄は置かず、入力の認知負荷とハードルを下げます。</li>
+              <li>入力フォームはシンプルで心理的ハードルが低く、文脈用フィールドと感情用フィールドの区分を明確にします。</li>
+            </ul>
+          </div>
+          <div class="req-two-col__cell req-two-col__cell--example">
+            <p class="req-two-col__label">例</p>
+            <div class="req-example-box">
+              <p class="req-example-box__row">
+                <span class="req-example-box__k">文脈（チャットの一文）</span><br>
+                上司：「これ今日中にやっといて」
+              </p>
+              <p class="req-example-box__row">
+                <span class="req-example-box__k">感情選択</span><br>
+                「嫌な気持ち」
+              </p>
+              <p class="req-example-box__note">長文の愚痴やメモ全文は入力せず、感情を選択する想定です。</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="req-card req-card--split">
+        <h3>FR-02: コンピテンシー変換出力</h3>
+        <div class="req-two-col">
+          <div class="req-two-col__cell">
+            <p class="req-two-col__label">説明</p>
+            <ul class="req-two-col__list">
+              <li>文脈テキストと感情入力をAIが解釈し、会社の評価基準（コンピテンシー）に沿った返信・拒否・交渉・お断りなど、<strong>ビジネス場面で使える表現</strong>に変換します。</li>
+              <li>変換後の出力は「自分の言葉として送れる」と感じられるトーンを維持します。</li>
+              <li>出力はコピー可能な形式で提供します。</li>
+            </ul>
+          </div>
+          <div class="req-two-col__cell req-two-col__cell--example">
+            <p class="req-two-col__label">例</p>
+            <div class="req-example-box">
+              <p class="req-example-box__row">
+                <span class="req-example-box__k">入力（FR-01 と連続）</span><br>
+                文脈「これ今日中にやっといて」<br>
+                感情「嫌な気持ち→無理→断る」
+              </p>
+              <p class="req-example-box__row">
+                <span class="req-example-box__k">変換案（出力）</span><br>
+                「申し訳ありません、本日中の対応が難しく…」など、ビジネス的で自然な文言へ
+              </p>
+              <p class="req-example-box__note">実際の文言は、コンピテンシー定義や用途設定によって調整される想定です。</p>
+            </div>
+          </div>
+        </div>
+      </article>
+
+      <article class="req-card">
+        <h3>FR-03: コンテキスト設定（任意）</h3>
+        <ul>
+          <li>ユーザーは「用途」を設定できます（例: 1on1の発言、自己評価シート、メール文面）。</li>
+          <li>会社のコンピテンシー定義をユーザーが入力・保存できます（任意）。</li>
+        </ul>
+      </article>
+
+      <article class="req-card">
+        <h3>FR-04: 会社の評価制度・コンピテンシー入力</h3>
+        <ul>
+          <li>ユーザーは自分の会社の評価基準（コンピテンシー定義）を登録できます。</li>
+          <li>入力形式は自由テキスト（コピペしやすい形式）です。</li>
+          <li>登録した評価制度が変換の「ターゲット」として機能します。</li>
+          <li>未登録の場合は汎用的な「ビジネスパーソンとして評価されやすい表現」にフォールバックします。</li>
+        </ul>
+      </article>
+
+      <article class="req-card">
+        <h3>FR-05: 自己コンテキスト設定（現在地と目指す姿）</h3>
+        <ul>
+          <li>ユーザーは以下を入力・登録できます。
+            <ul>
+              <li><strong>現在地</strong>: 「今の自分はどんな状態か」（例: 論理的に話せるが感情が先行しがち、評価はC）</li>
+              <li><strong>目指す姿</strong>: 「どう評価・認められたいか」（例: 主体性が高いと評価されたい、リーダーシップを発揮していると見られたい）</li>
+            </ul>
+          </li>
+          <li>この情報を変換プロセスに反映し、「その人にとっての適切な変換」を行います。</li>
+          <li>汎用的な"会社員っぽい言葉"への変換ではなく、「その人がどう見られたいか」に直結した変換にします。</li>
+        </ul>
+      </article>
+
+      <article class="req-card">
+        <h3>FR-06: 変換履歴</h3>
+        <ul>
+          <li>過去の文脈・感情入力・変換履歴を参照できます。</li>
+          <li>使い続けるほど変換があなたのトーンや文体に最適化されます（依存が深まる設計です）。</li>
+        </ul>
+      </article>
+
+      <article class="req-card">
+        <h3>FR-07: 依存体験の設計</h3>
+        <ul>
+          <li>使えば使うほど、変換の精度と文体の再現性がその人に最適化されます。</li>
+          <li>「もうこれなしでは書きたくない」という体験を自然に生み出します。</li>
+          <li>成長を促しません。ただ、楽になります。</li>
+        </ul>
+      </article>
+
+      <article class="req-card">
+        <h3>FR-08: Slack連携（自動返信補助）</h3>
+        <ul>
+          <li>Slackアプリとして動作し、対象メッセージに対する返信案を自動生成できます。</li>
+          <li>生成結果はそのまま送信できる形式で提示し、必要に応じてユーザーが編集可能とします。</li>
+          <li>WebアプリとAPIの両方から同じ変換ロジックを利用できる構成にします。</li>
+        </ul>
+      </article>
+    </section>
+
+    <section id="nfr">
+      <h2>非機能要件</h2>
+
+      <h3>NFR-01: 使いやすさ</h3>
+      <ul>
+        <li>入力から変換出力まで3クリック以内とします。</li>
+        <li>UIは感情的に安心できるデザイン（圧迫感がないもの）とします。</li>
+        <li>日本語メインで動作します。</li>
+      </ul>
+
+      <h3>NFR-02: 応答性</h3>
+      <ul>
+        <li>変換処理は10秒以内に結果を返します（ハッカソンデモ時）。</li>
+        <li>ローディング状態を明示的に表示します。</li>
+      </ul>
+
+      <h3>NFR-03: プライバシー</h3>
+      <ul>
+        <li>ユーザーが入力したチャット内容・感情ラベルは慎重に扱います。</li>
+        <li>データはユーザー本人にのみ紐づきます。</li>
+      </ul>
+
+      <h3>NFR-04: スケール</h3>
+      <ul>
+        <li>小規模: デモ・PoC段階（10人未満）を想定します。</li>
+      </ul>
+    </section>
+
+    <section id="users">
+      <h2>ターゲットユーザー</h2>
+      <table>
+        <thead>
+          <tr><th>ユーザー種別</th><th>説明</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>一次ユーザー</td><td>自分らしさと会社評価基準の間で消耗しているビジネスパーソン</td></tr>
+          <tr><td>想定ペルソナ</td><td>深く考えているのに伝え方と伝わり方で損している人、適切な返信方法で悩み仕事の生産性を落としている人</td></tr>
+          <tr><td>ハッカソン評価者</td><td>技術的な実装を見るエンジニア・デベロッパー</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="tech">
+      <h2>技術要件（ユーザー回答反映）</h2>
+      <table>
+        <thead>
+          <tr><th>項目</th><th>決定内容</th><th>補足</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>アプリケーション種別</td><td>Slackアプリ + Webアプリ + バックエンドAPI</td><td>Slack上の自動返信補助と、Webでの履歴参照を両立します。</td></tr>
+          <tr><td>技術スタック</td><td>Ruby</td><td>主実装言語として採用します。</td></tr>
+          <tr><td>データストレージ</td><td>リレーショナルDB必須（例: PostgreSQL / MySQL / Amazon RDS）</td><td>履歴参照要件のためです。必要に応じてNoSQL併用を検討します。</td></tr>
+          <tr><td>認証</td><td>OAuth / ソーシャルログイン</td><td>履歴データをユーザー単位で保護するためです。</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="cloud">
+      <h2>クラウドプラットフォーム</h2>
+      <ul>
+        <li><strong>AWS</strong>（確定）</li>
+        <li>想定サービス: Amazon Bedrock（AI/LLM）、AWS Lambda or EC2、Amazon RDS、Cognito（OAuth連携）</li>
+      </ul>
+    </section>
+
+    <section id="extensions">
+      <h2>拡張機能設定</h2>
+      <table>
+        <thead>
+          <tr><th>拡張機能</th><th>適用</th><th>理由</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>セキュリティベースライン</td><td>無効</td><td>PoC/プロトタイプ段階のため</td></tr>
+          <tr><td>プロパティベーステスト</td><td>無効</td><td>シンプルなデモ向け構成のため</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <section id="success">
+      <h2>成功基準</h2>
+      <ul>
+        <li>入力した感情が文脈に沿って「ちゃんと汲み取られた」と感じられる出力になります。</li>
+        <li>生成されたアウトプットを「自分の言葉として送れる」と感じられます。</li>
+        <li>「もうこれなしでこの作業をやりたくない」と思わせられます。</li>
+        <li>ハッカソンのデモとして動作するMVPが完成しています。</li>
+      </ul>
+    </section>
+
+    <section id="out-of-scope">
+      <h2>スコープ外（MVP除外）</h2>
+      <ul>
+        <li>モバイルアプリ</li>
+        <li>会社システムとの直接連携（HR系SaaS等）</li>
+        <li>多言語対応（日本語のみ）</li>
+        <li>詳細な分析ダッシュボード</li>
+      </ul>
+      <p style="margin-top:1.25rem;font-size:0.875rem;color:var(--muted);"><em>更新日: 2026-05-08</em></p>
+    </section>
+  </div>
+</body>
+</html>
