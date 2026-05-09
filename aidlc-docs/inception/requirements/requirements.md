@@ -178,6 +178,7 @@ AIはその文脈と感情から、会社・社会が求めるコンピテンシ
 | 技術スタック | Ruby | 主実装言語として採用 |
 | データストレージ | リレーショナルDB必須（例: PostgreSQL / MySQL / Amazon RDS） | 履歴参照要件のため。必要に応じてNoSQL併用を検討 |
 | 認証 | OAuth / ソーシャルログイン | 履歴データをユーザー単位で保護するため |
+| Slack連携の応答方式 | 【継続検討】非同期処理（response_url経由） | Slack Slash Commandは3秒以内の応答が必須。Amazon Bedrockの生成に数秒かかるため、受付とLLM処理を分離する非同期構成（受付Lambda→SQS→処理Lambda）を検討中。インフラ設計フェーズで確定する |
 
 ---
 
