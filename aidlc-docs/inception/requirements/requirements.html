@@ -90,6 +90,47 @@
       color: var(--muted);
     }
 
+    header.doc-head--with-mascot {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 1.25rem 1.5rem;
+    }
+
+    .doc-head__brand {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .doc-head__mascot {
+      display: block;
+      width: clamp(100px, 26vw, 152px);
+      height: auto;
+      border-radius: 18px;
+      background: radial-gradient(ellipse at 50% 35%, #fffafc 0%, #f8eff4 45%, transparent 72%);
+      image-rendering: pixelated;
+      image-rendering: crisp-edges;
+      box-shadow: 0 4px 14px rgba(196, 77, 139, 0.15);
+    }
+
+    header.doc-head--with-mascot .doc-head__intro {
+      flex: 1 1 min(260px, 100%);
+      min-width: 0;
+    }
+
+    header.doc-head--with-mascot .doc-head__intro h1 {
+      margin-bottom: 0.35rem;
+    }
+
+    .doc-head__title-brand {
+      font-weight: 600;
+      font-size: 0.82em;
+      color: var(--muted);
+      letter-spacing: 0.02em;
+    }
+
     section {
       margin-bottom: 2rem;
       padding: 1.5rem 1.5rem 1.25rem;
@@ -342,10 +383,22 @@
 </head>
 <body>
   <div class="wrap">
-    <header class="doc-head">
-      <h1>要件定義書</h1>
-      <p class="meta">サクラクダ（仮） — ハッカソン提出・レビュー用スタティックHTML</p>
-      <p class="hint">ソースは同フォルダの <code>requirements.md</code> です。HTML版では運用向けの「ハッカソン適合要件」「提出計画」「審査基準トレーサビリティ」は含めていません（Markdown側を参照）。その他は更新時にHTMLも合わせてください。</p>
+    <header class="doc-head doc-head--with-mascot">
+      <div class="doc-head__brand">
+        <img
+          class="doc-head__mascot"
+          src="sakurakuda-mascot.png"
+          width="722"
+          height="677"
+          alt="サクラクダのマスコットキャラクター（桜が咲いた双峰ラクダのピクセルアート）"
+          decoding="async"
+        >
+      </div>
+      <div class="doc-head__intro">
+        <h1>要件定義書 <span class="doc-head__title-brand">サクラクダ（仮）</span></h1>
+        <p class="meta">ハッカソン提出・レビュー用スタティックHTML — マスコットはプロダクト名のイメージ（桜 × 双峰ラクダ）</p>
+        <p class="hint">ソースは同フォルダの <code>requirements.md</code> です。HTML版では運用向けの「ハッカソン適合要件」「提出計画」「審査基準トレーサビリティ」は含めていません（Markdown側を参照）。その他は更新時にHTMLも合わせてください。</p>
+      </div>
     </header>
 
     <section id="intent">
