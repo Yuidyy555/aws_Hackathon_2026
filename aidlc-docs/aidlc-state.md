@@ -3,7 +3,7 @@
 ## Project Information
 - **Project Type**: Greenfield
 - **Start Date**: 2026-04-17T00:00:00Z
-- **Current Stage**: INCEPTION - Application Design (IN REVIEW)
+- **Current Stage**: INCEPTION — Units Generation **完了（成果物レビュー待ち）**
 
 ## Workspace State
 - **Existing Code**: No
@@ -34,8 +34,8 @@
 - [x] Requirements Analysis
 - [x] User Stories
 - [x] Workflow Planning
-- [ ] Application Design - EXECUTE
-- [ ] Units Generation - EXECUTE
+- [x] Application Design - COMPLETED
+- [x] Units Generation - COMPLETED
 
 ### 🟢 CONSTRUCTION PHASE
 - [ ] Functional Design - EXECUTE
@@ -49,7 +49,7 @@
 - [ ] Operations - PLACEHOLDER
 
 ## Current Status
-- **Lifecycle Phase**: INCEPTION
-- **Current Stage**: Application Design (Artifacts generated)
-- **Next Stage**: Units Generation
-- **Status**: Awaiting user approval for Application Design
+- **Lifecycle Phase**: INCEPTION（**ユニット成果物まで完了**。CONSTRUCTION へ進む前に下記レビュー承認を推奨）
+- **Current Stage**: Units Generation 成果物配置済み
+- **Next Stage**: CONSTRUCTION — Functional Design（per-unit）
+- **Status**: `unit-of-work.md` ほか生成済み。変更なければ **Functional Design** を開始してよい
