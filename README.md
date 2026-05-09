@@ -33,9 +33,9 @@ CLAUDE.md                   … Cursor / AI 向けプロジェクトルール
 README.md                   … 本ファイル
 ```
 
-## aidlc-docs の構成（ディレクトリそのまま）
+## aidlc-docs の構成
 
-Inception フェーズの成果物を中心に置いています。AI-DLC の標準では `construction/` や `operations/` にも成果物が載りますが、**現時点では未作成のディレクトリもありえます**（追加されたらこのツリーを更新してください）。
+Inception フェーズの成果物を中心に置いています。
 
 ```text
 aidlc-docs/
