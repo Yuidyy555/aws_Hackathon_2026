@@ -264,3 +264,57 @@ Q8: 認証の箇所
 **Context**: INCEPTION PHASE — Application Design (review clarification reflected)
 
 ---
+
+## Application Design - Dependency Flow Diagram
+**Timestamp**: 2026-05-09T00:00:00Z
+**User Input**: "aidlc-docs/inception/application-design/component-dependency.md
+これのフロー図を書いてください。SlackGatewayComponentとWebGatewayComponentなどは外側とのIO担当で、文章生成自体はReplyServiceで共有しているイメージであっていますか？"
+**AI Response**: Confirmed the layering model and added Mermaid flowcharts (draft-generation convergence at ReplyService plus Web history read path) with text alternatives to `component-dependency.md`.
+**Context**: INCEPTION PHASE — Application Design (documentation update)
+
+---
+
+## Application Design - Integrated Doc Rewrite
+**Timestamp**: 2026-05-09T08:30:00Z
+**User Input**: "@aidlc-docs/inception/application-design/component-dependency.md を元に application-design.md を詳細に書き直してください。"
+**AI Response**: Rewrote `aidlc-docs/inception/application-design/application-design.md` as consolidated architecture doc: boundaries, layered responsibilities, dependency matrix narration, replicated flow diagrams + text alternatives, phased data flows, error propagation, decisions, cross-references, and hand-off notes aligned with component-dependency.md.
+**Context**: INCEPTION PHASE — Application Design (documentation consolidation)
+
+---
+
+## Application Design - Competency Mandatory (Web input + sibling doc sync)
+**Timestamp**: 2026-05-09T14:00:00Z
+**User Input**: "(Conversation handoff) Reconcile sibling design files with competency-on-Web MVP: GET/PUT /web/user-context, ReplyService validates competencyText before ReplyDraftGenerationComponent, WebGateway → UserContextService; update component-dependency Mermaid/matrix; optionally tighten requirements FR-03/FR-04."
+**AI Response**: Updated `application-design.md` Mermaid draft flow (explicit UserContextComponent + persistence). Synced `components.md`, `component-methods.md`, `services.md`, `component-dependency.md` for Web competency CRUD path, ReplyService/UserContextService orchestration rules, and dependency matrix/flows. Revised `requirements.md` FR-03/FR-04 for MVP: competency registered on Web, no fallback draft generation when unset.
+**Context**: INCEPTION PHASE — Application Design (post-handoff reconciliation)
+
+---
+
+## Requirements / Application Design - Competency Optional
+**Timestamp**: 2026-05-09T15:30:00Z
+**User Input**: "コンピテンシーの登録は任意です。"
+**AI Response**: Aligned artifacts to optional competency: `requirements.md` FR-03/FR-04; `application-design.md` §1.2–1.3, §2.1–2.3, §3, §4.1/4.2, §5–7, footer; `components.md`, `component-methods.md`, `services.md`, `component-dependency.md`; `user-stories/stories.md` US-02 criterion 5. Policy: unset `competencyText` does not block draft generation—`ReplyDraftGenerationComponent` uses generic business-tone fallback path.
+**Context**: INCEPTION PHASE — Requirements & Application Design (user policy change)
+
+---
+
+## Application Design - Component methods / draft flow + shared UserContext
+**Timestamp**: 2026-05-09T16:00:00Z
+**User Input**: "component-methods.mdとapplication-desing.mdの返信ドラフト生成フローの情報に差があります。component-methods.mdを修正してください。UserContextに関しては、Slackや他のIOにも使われるのでWebの持ち物ではなく共有の持ち物として扱いたいです。その際に、外部IOと内部のUserを紐付ける方法も考えてください。"
+**AI Response**: Rewrote `component-methods.md` to align reply-draft orchestration with `application-design.md` (ReplyService → UserContextService → ReplyDraftGenerationComponent → HistoryComponent), documented Slack via `SlackInteractionService`, added `ReplyService`/`UserContextService` method stubs, introductory `internalUserId` binding (Web: Cognito `sub`/session; Slack: `team_id`+`user_id` persistent link). Clarified WebGateway as HTTP adapters to shared contexts. Updated `application-design.md` diagram footnote for shared `UserContext` and `services.md` SlackInteractionService responsibilities.
+
+---
+
+## Application Design - Responsibility separation refactoring
+**Timestamp**: 2026-05-09T18:45:00Z
+**User Input**: "では修正してください。" (following analysis: separate Slack normalization vs Gateway, LinkedIdentity resolver, Slack presentation mapper, split ReplyDraftGeneration into PromptBuilder/LanguageModel/Normalizer, ReplyDraftContextAssembler from UserContext, Web gateway routing clarity, error layer rules)
+**AI Response**: Updated `components.md`, `services.md`, `component-methods.md`, `application-design.md` (§1.5 boundary table, matrices, §5 flows, footer), `component-dependency.md` (diagram, matrix, data flow). Introduced documented roles: LinkedIdentityResolverService, SlackReplyPresentationMapperComponent, ReplyDraftContextAssembler, ReplyDraftPromptBuilder/LanguageModelClient/OutputNormalizer; thinned SlackGateway; aligned History read via HistoryQueryService.
+
+---
+
+## Application Design - Remove future-scope documentation
+**Timestamp**: 2026-05-09T17:30:00Z
+**User Input**: "将来拡張はまだcomponent-methodや他のApplicationデザインに書かなくてもいいので消して、必須要件のみ残してください。"
+**AI Response**: Removed PublicApi gateway sections from `component-methods.md` and `components.md`; removed public REST / placeholder rows and `usageKind` future field from `application-design.md`; dropped future-API bullets from `services.md` and `component-dependency.md`; trimmed speculative SlackInteraction helper note; omitted optional `Correlation` param from `ReplyService#createReplyDraft` signature in component-methods.
+
+---
